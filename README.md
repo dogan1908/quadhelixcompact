@@ -101,7 +101,7 @@ is the starting point, not the final insight.
   title  = {From the Quadratic Sequence to the Conical Helix:
             A Direct Algebraic Construction},
   year   = {2026},
-  doi    = {10.5281/zenodo.XXXXXXX},
+  doi    = {10.5281/zenodo.18906202},
   note   = {LaTeX source, GitHub repository}
 }
 ```
