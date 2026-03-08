@@ -1,0 +1,131 @@
+% ============================================================
+%  Chapter 3 — The Fundamental Identity and Q(k)
+% ============================================================
+\section{The Fundamental Identity and the Universal Quantity \texorpdfstring{$Q(k)$}{Q(k)}}
+\label{sec:identity}
+
+This section establishes the algebraic core of the entire construction:
+a single identity that connects the index $n$, the function value $k$,
+and all geometric coordinates of the helix.
+
+\subsection{The Identity}
+
+\begin{theorem}[Fundamental Identity]\label{thm:fundamental}
+For all $n \geq 1$:
+\begin{equation}\label{eq:fundamental}
+  (4n+3)^2 = 48\,k(n) + 1.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Expanding $(4n+3)^2 = 16n^2 + 24n + 9$ and computing
+$48\,k(n) + 1 = 48 \cdot \frac{2n^2+3n+1}{6} + 1 = 16n^2 + 24n + 8 + 1 = 16n^2+24n+9$.
+\end{proof}
+
+\begin{remark}[Significance]
+The identity states that $48\,k(n)+1$ is always a perfect square.
+Conversely, suppose $48k+1 = q^2$ for some positive integer $q$.
+Then $q$ is necessarily odd (since $48k+1$ is odd) and
+$n = (q-3)/4$ is a non-negative integer if and only if
+$q \equiv 3 \pmod{4}$. The value $k$ belongs to the sequence
+precisely when the additional condition $n \equiv 1, 5 \pmod{6}$ is
+satisfied. This perfect-square criterion is the algebraic mechanism
+that makes the exact helix construction possible.
+\end{remark}
+
+\subsection{The Universal Quantity \texorpdfstring{$Q(k)$}{Q(k)}}
+
+\begin{definition}[Universal quantity]\label{def:Q}
+For $k \geq 1$ we define
+\begin{equation}\label{eq:Q-def}
+  Q(k) \coloneqq \sqrt{48k+1}.
+\end{equation}
+At the integer values $k = k(n)$, the fundamental identity yields
+$Q(k(n)) = 4n+3$.
+\end{definition}
+
+\subsection{Exact Inverse Formula}
+
+\begin{theorem}[Inverse of $k(n)$]\label{thm:inverse}
+The sequence $k(n)$ possesses the exact inverse
+\begin{equation}\label{eq:inverse}
+  n(k) = \frac{Q(k) - 3}{4} = \frac{\sqrt{48k+1} - 3}{4}.
+\end{equation}
+For $k = k(n)$ with $n \equiv 1, 5 \pmod{6}$, this returns the
+original index $n$ exactly.
+\end{theorem}
+
+\begin{proof}
+Solving $(4n+3)^2 = 48k+1$ for $n$:
+$4n+3 = \sqrt{48k+1}$, hence $n = (\sqrt{48k+1}-3)/4$.
+\end{proof}
+
+\begin{example}
+For $k = 46$: $Q = \sqrt{48 \cdot 46 + 1} = \sqrt{2209} = 47$,
+hence $n = (47-3)/4 = 11$. Indeed $k(11) = 46$.
+\end{example}
+
+\subsection{ODE Characterisation}\label{subsec:ode}
+
+The inverse formula~\eqref{eq:inverse} can also be understood as the
+solution of an initial-value problem.
+
+\begin{theorem}[ODE of the height function]\label{thm:ode}
+The height function $z = n(k)$ is the unique solution of
+\begin{equation}\label{eq:ode}
+  \frac{dz}{dk} = \frac{6}{4z+3}, \qquad z\!\left(\tfrac{1}{6}\right) = 0.
+\end{equation}
+The explicit solution is $2z^2 + 3z + 1 = 6k$, which upon solving for
+$z \geq 0$ coincides with~\eqref{eq:inverse}.
+\end{theorem}
+
+\begin{proof}
+Separation of variables: $(4z+3)\,dz = 6\,dk$.
+Integration: $2z^2 + 3z = 6k + C$.
+The initial condition $z(1/6) = 0$ gives $C = -1$, hence
+$2z^2+3z+1 = 6k$, i.e.\ $k(z) = k$.
+\end{proof}
+
+\begin{remark}[Asymptotics]
+The slope $dz/dk = 6/(4z+3) \approx 3/(2z)$ for large $z$ yields
+$z \approx \sqrt{3k}$. This is the leading term of the exact formula
+$z = (\sqrt{48k+1}-3)/4 \approx \sqrt{3k} - 3/4 + O(k^{-1/2})$.
+\end{remark}
+
+\subsection{All Helix Quantities as Functions of \texorpdfstring{$Q$}{Q}}
+\label{subsec:Q-table}
+
+The quantity $Q$ determines all geometric coordinates of the helix
+through exact, closed-form expressions:
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.6}
+\caption{Helix coordinates as exact functions of $Q(k) = \sqrt{48k+1}$.
+  At integer values $k = k(n)$, one has $Q = 4n+3$.}
+\label{tab:Q-overview}
+\begin{tabular}{lcc}
+\toprule
+Quantity & Formula in $Q$ & Value at $Q = 4n+3$ \\
+\midrule
+Height $z$
+  & $\dfrac{Q-3}{4}$
+  & $n$ \\[8pt]
+Angle $\theta$
+  & $\dfrac{\pi\,Q}{12}$
+  & $\dfrac{\pi}{3}n + \dfrac{\pi}{4}$ \\[8pt]
+Radius $r$
+  & $\dfrac{Q}{2\pi}$
+  & $\dfrac{4n+3}{2\pi}$ \\[8pt]
+Function value $k$
+  & $\dfrac{Q^2-1}{48}$
+  & $\dfrac{2n^2+3n+1}{6}$ \\[8pt]
+Derivative $k'(n)$
+  & $\dfrac{Q}{6}$
+  & $\dfrac{4n+3}{6}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The table reveals that $Q$ is a \emph{universal parameter}: a single
+square root encodes the complete three-dimensional geometry of the helix.

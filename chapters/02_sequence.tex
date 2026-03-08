@@ -1,0 +1,141 @@
+% ============================================================
+%  Chapter 2 — The Quadratic Sequence
+% ============================================================
+\section{The Quadratic Sequence}\label{sec:sequence}
+
+\subsection{Definition and Origin}
+
+The sequence arises from the classical summation formula for squares.
+The sum of the first $n$ squares is
+$S_n = \sum_{i=1}^{n} i^2 = \frac{n(n+1)(2n+1)}{6}$,
+and its arithmetic mean
+\begin{equation}\label{eq:k-explicit}
+  k(n) = \frac{S_n}{n} = \frac{(n+1)(2n+1)}{6}
+       = \frac{2n^2 + 3n + 1}{6}
+\end{equation}
+is a quadratic polynomial in $n$ with leading coefficient $\frac{1}{3}$.
+
+\begin{remark}[OEIS entry]
+The integer values of $k(n)$ are listed in the OEIS under
+\href{https://oeis.org/A164576}{A164576}~\cite{OEIS} as
+\emph{``Integer averages of the set of the first positive squares up to
+some $n^2$''}.
+\end{remark}
+
+\subsection{Integrality Condition}
+
+\begin{theorem}[Congruence condition]\label{thm:congruence}
+The sequence $k(n)$ takes integer values if and only if
+\begin{equation}\label{eq:cong}
+  n \equiv 1, 5 \pmod{6}.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+We examine $2n^2 + 3n + 1 \pmod{6}$ for all residue classes:
+
+\begin{center}
+\begin{tabular}{ccccc}
+\toprule
+$n \!\pmod{6}$ & $2n^2 \!\pmod{6}$ & $3n \!\pmod{6}$ & $2n^2\!+\!3n\!+\!1 \!\pmod{6}$ & $6 \mid ?$ \\
+\midrule
+0 & 0 & 0 & 1 & No \\
+1 & 2 & 3 & 0 & Yes \\
+2 & 2 & 0 & 3 & No \\
+3 & 0 & 3 & 4 & No \\
+4 & 2 & 0 & 3 & No \\
+5 & 2 & 3 & 0 & Yes \\
+\bottomrule
+\end{tabular}
+\end{center}
+Divisibility by~$6$ occurs precisely for $n \equiv 1$ and $n \equiv 5$.
+\end{proof}
+
+The first integer values are:
+
+\begin{center}
+\begin{tabular}{c*{10}{c}}
+\toprule
+$n$ & 1 & 5 & 7 & 11 & 13 & 17 & 19 & 23 & 25 & 29 \\
+\midrule
+$k(n)$ & 1 & 11 & 20 & 46 & 63 & 105 & 130 & 188 & 221 & 295 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Difference Structure: Long and Short Steps}\label{subsec:steps}
+
+The integer-valued indices follow a periodic pattern. Within each
+period $m = 1, 2, 3, \ldots$, there is a step of width $\Delta n = 4$
+from $n = 6m-5$ to $n = 6m-1$, followed by a step of width
+$\Delta n = 2$ from $n = 6m-1$ to $n = 6m+1$.
+
+\begin{definition}[Long and short steps]\label{def:steps}
+For the $m$-th period ($m \geq 1$) we define:
+\begin{align}
+  \delta^{(4)}_m &\coloneqq k(6m-1) - k(6m-5)
+  \quad\text{(\emph{long step},\; $\Delta n = 4$)},
+  \label{eq:long}\\[4pt]
+  \delta^{(2)}_m &\coloneqq k(6m+1) - k(6m-1)
+  \quad\text{(\emph{short step},\; $\Delta n = 2$)}.
+  \label{eq:short}
+\end{align}
+The superscript indicates the index difference $\Delta n$.
+\end{definition}
+
+\begin{theorem}[Step-size formulae]\label{thm:step-formulae}
+For all $m \geq 1$:
+\begin{equation}\label{eq:step-formulae}
+  \delta^{(4)}_m = 16m - 6,
+  \qquad
+  \delta^{(2)}_m = 8m + 1.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Using $k(n) = \frac{1}{6}(2n^2+3n+1)$ and the difference-of-squares identity:
+\begin{align*}
+  k(6m\!-\!1) - k(6m\!-\!5)
+  &= \frac{1}{6}\bigl[2\cdot(12m\!-\!6)\cdot 4 + 3\cdot 4\bigr]
+  = \frac{96m-36}{6} = 16m-6,\\[4pt]
+  k(6m\!+\!1) - k(6m\!-\!1)
+  &= \frac{1}{6}\bigl[2\cdot 12m\cdot 2 + 3\cdot 2\bigr]
+  = \frac{48m+6}{6} = 8m+1.
+  \qedhere
+\end{align*}
+\end{proof}
+
+The first differences are thus:
+\begin{center}
+\begin{tabular}{c*{8}{c}}
+\toprule
+$\delta_k$ & 10 & 9 & 26 & 17 & 42 & 25 & 58 & 33 \\
+$\Delta n$ & 4 & 2 & 4 & 2 & 4 & 2 & 4 & 2 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{remark}[Pairwise sums form an arithmetic progression]
+Each long--short pair sums to
+$U_m = \delta^{(4)}_m + \delta^{(2)}_m = (16m-6)+(8m+1) = 24m-5$,
+with constant increment $\Delta U = 24$. This arithmetic structure is a
+direct algebraic consequence of Theorem~\ref{thm:step-formulae} and will
+reappear as the circumference of the $m$-th spiral winding in
+Section~\ref{sec:helix}.
+\end{remark}
+
+\subsection{Prime Number Property}\label{subsec:primes-mod6}
+
+\begin{theorem}[Primes and the congruence classes]\label{thm:primes-mod6}
+All primes $p > 3$ satisfy $p \equiv 1$ or $5 \pmod{6}$.
+\end{theorem}
+
+\begin{proof}
+Every prime $p > 3$ is coprime to $6$, since it is divisible neither by~$2$
+nor by~$3$. The residue classes coprime to~$6$ are precisely $1$ and
+$5$~\cite[Ch.\,1]{IrelandRosen1990}.
+\end{proof}
+
+Thus, the indices at which $k(n)$ is an integer are exactly the residue
+classes that contain all primes greater than~$3$. This coincidence is the arithmetic foundation of the prime number
+corollary in Section~\ref{sec:primes}.

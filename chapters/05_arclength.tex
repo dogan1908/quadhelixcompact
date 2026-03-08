@@ -1,0 +1,173 @@
+% ============================================================
+%  Chapter 5 — Arc Length and Asymptotic Equivalence
+% ============================================================
+\section{Arc Length and Asymptotic Equivalence}\label{sec:arclength}
+
+In this section we derive the arc-length formula for the parabola $k(n)$
+and prove that the arc length converges asymptotically to the
+difference values $\Delta k$. The universal quantity $Q$ provides a
+unified framework for comparing the arc lengths of the parabola and the
+helix.
+
+\subsection{Arc-Length Formula for the Parabola}
+
+The arc-length element of the curve $(n, k(n))$ is
+$ds = \sqrt{1 + [k'(n)]^2}\,dn$ with $k'(n) = (4n+3)/6$.
+Substituting $u = 4n+3$, $du = 4\,dn$:
+
+\begin{theorem}[Closed-form arc length]\label{thm:arc-length-parabola}
+Let $u_i = 4n_i + 3$. The arc length of $k(n)$ between $n_1$ and $n_2$ is:
+\begin{equation}\label{eq:arc-length-closed}
+  L(n_1, n_2)
+  = \frac{1}{48}\Bigl[u\sqrt{u^2+36}
+    + 36\operatorname{arcsinh}\!\left(\frac{u}{6}\right)
+    \Bigr]_{u_1}^{u_2}.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+From $ds = \frac{1}{6}\sqrt{36 + (4n+3)^2}\,dn$ and $u = 4n+3$:
+$L = \frac{1}{24}\int_{u_1}^{u_2}\sqrt{u^2+36}\,du$.
+Applying the standard integral
+$\int\sqrt{u^2+a^2}\,du = \frac{1}{2}[u\sqrt{u^2+a^2} +
+a^2\operatorname{arcsinh}(u/a)]$ with $a = 6$ and combining the
+prefactors $\frac{1}{24}\cdot\frac{1}{2} = \frac{1}{48}$ yields the
+result.
+\end{proof}
+
+\subsection{Unified \texorpdfstring{$Q$}{Q}-Representation}
+\label{subsec:Q-arclength}
+
+Since $u = 4n+3 = Q(k(n))$, the arc-length element can be written
+directly in terms of $Q$:
+
+\begin{theorem}[$Q$-parametrisation of the arc lengths]\label{thm:Q-arc}
+The arc-length elements of the parabola and of the conical helix
+admit the unified form
+\begin{equation}\label{eq:ds-Q}
+  ds = \frac{1}{24}\sqrt{Q^2 + C}\; dQ,
+\end{equation}
+where
+\[
+  C_{\mathrm{Parabola}} = 36,
+  \qquad
+  C_{\mathrm{Helix}} = 36 + \frac{144}{\pi^2} \approx 50.59.
+\]
+\end{theorem}
+
+\begin{proof}
+For the parabola, this is immediate from the substitution $u = Q$.
+For the helix, using $\theta = \pi Q/12$ and $d\theta = (\pi/12)\,dQ$
+in the speed formula~\eqref{eq:speed}:
+\begin{align*}
+  ds &= \|\gamma'(\theta)\|\,d\theta
+     = \frac{3}{\pi^2}\sqrt{4(1+\theta^2)+\pi^2}\cdot\frac{\pi}{12}\,dQ \\
+     &= \frac{1}{4\pi}\sqrt{4+4\theta^2+\pi^2}\,dQ
+     = \frac{1}{24}\sqrt{Q^2 + 36 + \tfrac{144}{\pi^2}}\,dQ.
+     \qedhere
+\end{align*}
+\end{proof}
+
+\begin{remark}[Convergence of the arc lengths]
+The difference $C_{\mathrm{Helix}} - C_{\mathrm{Parabola}} = 144/\pi^2$
+is the exact contribution of the spiral motion. For $Q \to \infty$ the
+ratio
+$ds_{\mathrm{Helix}}/ds_{\mathrm{Parabola}} = \sqrt{(Q^2+C_H)/(Q^2+C_P)}
+\to 1$, so the arc lengths of both curves converge.
+\end{remark}
+
+\subsection{Asymptotic Equivalence: Arc Length \texorpdfstring{$\approx \Delta k$}{≈ Δk}}
+
+The most striking consequence of the arc-length formula is that the
+difference values $\Delta k$ of the sequence are themselves excellent
+approximations of the arc length.
+
+\begin{proposition}[Asymptotic arc-length--difference equivalence]
+\label{prop:asymptotic}
+Let $L^{(2)}(m)$ and $L^{(4)}(m)$ denote the arc lengths of the
+parabola over the $m$-th short step and the $m$-th long step,
+respectively (Definition~\ref{def:steps}). Then, as $m \to \infty$:
+\[
+  \frac{L^{(2)}(m)}{\delta^{(2)}_m} \to 1,
+  \qquad
+  \frac{L^{(4)}(m)}{\delta^{(4)}_m} \to 1.
+\]
+\end{proposition}
+
+\begin{proof}
+We demonstrate the short-step case; the long-step case is analogous.
+The short step connects $n_1 = 6m-1$ to $n_2 = 6m+1$, giving
+$u_1 = 24m-1$ and $u_2 = 24m+7$.
+
+By Theorem~\ref{thm:arc-length-parabola}, the arc length is
+$L^{(2)}(m) = \frac{1}{48}[F(u)]_{u_1}^{u_2}$ where
+$F(u) = u\sqrt{u^2+36} + 36\operatorname{arcsinh}(u/6)$.
+For large $u$ the expansion
+$\sqrt{u^2+36} = u + 18/u + O(u^{-3})$ gives:
+\[
+  F(u) = u^2 + 18 + 36\ln u + O(u^{-1}).
+\]
+Hence
+\[
+  F(u_2) - F(u_1)
+  = (u_2^2 - u_1^2) + 36\ln\frac{u_2}{u_1} + O(m^{-1}).
+\]
+Now $u_2^2 - u_1^2 = (u_2+u_1)(u_2-u_1) = (48m+6)\cdot 8 = 384m + 48$,
+so
+\[
+  L^{(2)}(m) = \frac{384m+48}{48} + O\!\left(\frac{\ln m}{m}\right)
+             = 8m + 1 + O\!\left(\frac{\ln m}{m}\right)
+             = \delta^{(2)}_m + o(1).
+             \qedhere
+\]
+\end{proof}
+
+\begin{table}[H]
+\centering
+\caption{Arc length vs.\ difference value. The ratio $L/\Delta k$
+  converges monotonically to~$1$.}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{cccccc}
+\toprule
+$n_1 \to n_2$ & $\Delta n$ & $\Delta k$ & Arc length $L$ & $L / \Delta k$ \\
+\midrule
+ $1 \to  5$ & 4 & 10 & 10.839 & 1.0839 \\
+ $5 \to  7$ & 2 &  9 &  9.221 & 1.0246 \\
+ $7 \to 11$ & 4 & 26 & 26.310 & 1.0119 \\
+$11 \to 13$ & 2 & 17 & 17.117 & 1.0069 \\
+$13 \to 17$ & 4 & 42 & 42.191 & 1.0045 \\
+$17 \to 19$ & 2 & 25 & 25.080 & 1.0032 \\
+$19 \to 23$ & 4 & 58 & 58.138 & 1.0024 \\
+$23 \to 25$ & 2 & 33 & 33.061 & 1.0018 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{remark}[Geometric meaning]
+This convergence has a transparent cause: the slope
+$k'(n) = (4n+3)/6 = Q/6$ grows without bound, so the horizontal
+component $\Delta n \leq 4$ contributes ever less to the arc-length
+element $\sqrt{1 + (k')^2}$. In the limit, $ds/dn \to k'(n)$ and
+hence $L \to \int k'\,dn = \Delta k$.
+\end{remark}
+
+\subsection{Taylor Approximation}
+
+The asymptotic equivalence $L \approx \Delta k$ can also be confirmed
+through the $p$-parametrisation of the \emph{spiral} arc length
+(cf.\ Section~\ref{sec:helix}), where the integrand takes the form
+$\sqrt{1 + 3/(\pi^2 p)}$. Expanding for large $p$:
+
+\begin{theorem}[Taylor approximation of the spiral arc length]
+\label{thm:taylor}
+For the spiral arc length in the $p$-parametrisation, with
+$p_i = k(n_i)$:
+\begin{equation}\label{eq:taylor}
+  L \approx (p_2 - p_1)
+  + \frac{3}{2\pi^2}\ln\!\left(\frac{p_2}{p_1}\right)
+  + \frac{9}{8\pi^4}\left(\frac{1}{p_1} - \frac{1}{p_2}\right).
+\end{equation}
+The leading term $(p_2 - p_1) = \Delta k$ confirms the asymptotic
+equivalence; the logarithmic correction is of relative order
+$O(\ln p / p)$.
+\end{theorem}

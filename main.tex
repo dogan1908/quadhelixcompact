@@ -1,0 +1,150 @@
+% ============================================================
+%  From the Quadratic Sequence to the Conical Helix:
+%  A Direct Algebraic Construction
+%  Dogan Balban — 2026
+% ============================================================
+
+\documentclass[12pt,a4paper]{article}
+
+% ── Encoding and Language ────────────────────────────────────
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{csquotes}
+
+% ── Bibliography ─────────────────────────────────────────────
+\usepackage[
+  backend=biber,
+  style=alphabetic,
+]{biblatex}
+\addbibresource{references.bib}
+
+% ── Mathematics ──────────────────────────────────────────────
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+% ── Page Layout ──────────────────────────────────────────────
+\usepackage{geometry}
+\geometry{
+  left   = 2.5cm,
+  right  = 2.5cm,
+  top    = 3.0cm,
+  bottom = 3.0cm
+}
+
+% ── Hyperlinks ───────────────────────────────────────────────
+\usepackage[
+  colorlinks = true,
+  linkcolor  = blue!60!black,
+  citecolor  = blue!60!black,
+  urlcolor   = blue
+]{hyperref}
+
+% ── Graphics and Colours ─────────────────────────────────────
+\usepackage{graphicx}
+\graphicspath{{bilder/}}
+\usepackage[table]{xcolor}
+
+% ── Boxes ────────────────────────────────────────────────────
+\usepackage{tcolorbox}
+\tcbuselibrary{skins, breakable}
+
+% ── Tables ───────────────────────────────────────────────────
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{float}
+
+% ── Units and Numbers ────────────────────────────────────────
+\usepackage{siunitx}
+\sisetup{output-decimal-marker = {.}}
+
+% ── Lists ────────────────────────────────────────────────────
+\usepackage{enumitem}
+
+% ── Miscellaneous ────────────────────────────────────────────
+\usepackage{textcomp}
+\usepackage{gensymb}
+
+% ============================================================
+%  THEOREM ENVIRONMENTS
+% ============================================================
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+% ============================================================
+%  TITLE
+% ============================================================
+
+\title{%
+  \textbf{From the Quadratic Sequence to the Conical Helix:\\[0.3em]
+  A Direct Algebraic Construction}\\[0.8em]
+  \large Via the Universal Quantity $Q(k) = \sqrt{48k+1}$
+}
+\author{Dogan Balban}
+\date{2026}
+
+% ============================================================
+%  DOCUMENT
+% ============================================================
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We consider the quadratic sequence $k(n) = \frac{1}{6}(2n^2+3n+1)$,
+which takes integer values precisely when $n \equiv 1, 5 \pmod{6}$ ---
+the residue classes containing all primes greater than~$3$.
+We show that the algebraic identity $(4n+3)^2 = 48\,k(n) + 1$ gives
+rise to a universal quantity $Q(k) = \sqrt{48k+1}$ that encodes the
+complete geometry of a conical helix: radius, angle, and height are
+all explicit closed-form expressions in~$Q$.
+The helix lies simultaneously on an Archimedean spiral
+$r = \frac{6}{\pi^2}\theta$ and a cone $z = -\frac{3}{4} + \frac{\pi}{2}r$,
+both as algebraic consequences of the single identity.
+The arc length of the parabola $k(n)$ converges asymptotically to the
+difference values $\Delta k$, and all primes $p > 3$ appear as
+distinguished discrete points on the helix.
+The construction is entirely deductive: every geometric object is
+\emph{derived} from the sequence, not empirically observed.
+\end{abstract}
+
+\tableofcontents
+\clearpage
+
+% ── Chapter 1: Introduction ──────────────────────────────────
+\input{chapters/01_introduction}
+
+% ── Chapter 2: The Quadratic Sequence ────────────────────────
+\input{chapters/02_sequence}
+
+% ── Chapter 3: The Fundamental Identity and Q(k) ─────────────
+\input{chapters/03_identity}
+
+% ── Chapter 4: The Conical Helix ─────────────────────────────
+\input{chapters/04_helix}
+
+% ── Chapter 5: Arc Length and Asymptotic Equivalence ──────────
+\input{chapters/05_arclength}
+
+% ── Chapter 6: Prime Numbers on the Helix ────────────────────
+\input{chapters/06_primes}
+
+% ── Bibliography ─────────────────────────────────────────────
+\printbibliography
+
+\end{document}

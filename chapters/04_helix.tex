@@ -1,0 +1,190 @@
+% ============================================================
+%  Chapter 4 — The Conical Helix: Direct Construction
+% ============================================================
+\section{The Conical Helix}\label{sec:helix}
+
+Using the universal quantity $Q(k) = \sqrt{48k+1}$ from
+Section~\ref{sec:identity}, we now construct the conical helix
+directly and prove its geometric properties as algebraic corollaries.
+
+\subsection{Exact Parametrisation}
+
+\begin{theorem}[Exact helix parametrisation]\label{thm:helix}
+Let $Q(k) = \sqrt{48k+1}$. The conical helix is given exactly by
+\begin{equation}\label{eq:helix-exact}
+  \boxed{
+  \vec{p}(k) =
+  \begin{pmatrix}
+    \dfrac{Q}{2\pi}\cos\!\Bigl(\dfrac{\pi\,Q}{12}\Bigr)\\[10pt]
+    \dfrac{Q}{2\pi}\sin\!\Bigl(\dfrac{\pi\,Q}{12}\Bigr)\\[10pt]
+    \dfrac{Q-3}{4}
+  \end{pmatrix},
+  \qquad Q = Q(k).
+  }
+\end{equation}
+At the integer values $k = k(n)$ with $n \equiv 1, 5 \pmod{6}$,
+one has $Q = 4n+3$, and the point $\vec{p}$ has integer height $z = n$.
+\end{theorem}
+
+\begin{proof}
+By Definition~\ref{def:Q} and Table~\ref{tab:Q-overview}, the three
+coordinates are $r = Q/(2\pi)$, $\theta = \pi Q/12$, and $z = (Q-3)/4$.
+At $k = k(n)$ the fundamental identity (Theorem~\ref{thm:fundamental})
+gives $Q = 4n+3$, whence $z = (4n+3-3)/4 = n$ and
+$\theta = \pi(4n+3)/12 = \pi n/3 + \pi/4$.
+\end{proof}
+
+Equivalently, the helix admits the standard $\theta$-parametrisation:
+
+\begin{corollary}[$\theta$-parametrisation]\label{cor:theta-param}
+With $a = 6/\pi^2$ and $c_1 = 3/\pi$:
+\begin{equation}\label{eq:helix-theta}
+  \gamma(\theta) =
+  \begin{pmatrix}
+    a\,\theta\cos\theta \\[4pt]
+    a\,\theta\sin\theta \\[4pt]
+    -\tfrac{3}{4} + c_1\,\theta
+  \end{pmatrix}.
+\end{equation}
+The helix intersects the plane $z = n$ at the angle
+$\theta_n = \frac{\pi}{3}n + \frac{\pi}{4}$.
+\end{corollary}
+
+\begin{proof}
+Setting $\theta = \pi Q/12$ and $r = Q/(2\pi)$ gives
+$r = (6/\pi^2)\theta = a\theta$. The height is
+$z = (Q-3)/4 = (12\theta/\pi - 3)/4 = (3/\pi)\theta - 3/4 = c_1\theta - 3/4$.
+\end{proof}
+
+\subsection{Spiral Conformity}\label{subsec:spiral}
+
+\begin{theorem}[Archimedean spiral]\label{thm:spiral}
+The helix points $(r(k), \theta(k))$ lie exactly on the Archimedean
+spiral $r = \frac{6}{\pi^2}\,\theta$.
+\end{theorem}
+
+\begin{proof}
+Direct verification:
+$\frac{6}{\pi^2}\cdot\frac{\pi Q}{12}
+  = \frac{Q}{2\pi}
+  = r(k)$.
+\end{proof}
+
+\begin{remark}[Connection to the Basel problem]
+The spiral slope constant $a = 6/\pi^2 = 1/\zeta(2)$ is the reciprocal
+of the Riemann zeta function at $s = 2$, the solution of Euler's
+Basel problem~\cite{Euler1740, Hardy2008}.
+\end{remark}
+
+\subsection{Cone Conformity}\label{subsec:cone}
+
+\begin{theorem}[Cone equation]\label{thm:cone}
+The helix points $(r(k), z(k))$ lie exactly on the cone of revolution
+$z = -\frac{3}{4} + \frac{\pi}{2}\,r$.
+\end{theorem}
+
+\begin{proof}
+Direct verification:
+$-\frac{3}{4} + \frac{\pi}{2}\cdot\frac{Q}{2\pi}
+  = -\frac{3}{4} + \frac{Q}{4}
+  = \frac{Q-3}{4}
+  = z(k)$.
+\end{proof}
+
+\begin{remark}[Geometric interpretation]
+The cone has apex at $(0, 0, -3/4)$, half-angle
+$\alpha = \arctan(2/\pi) \approx 32.48°$, and the helix rises by
+exactly $\Delta z = 6$ per full revolution
+($\Delta\theta = 2\pi$, $\Delta z = c_1 \cdot 2\pi = 6$).
+\end{remark}
+
+\subsection{Three Invariants from One Identity}
+
+\begin{tcolorbox}[
+  title={Summary: Three simultaneous invariants},
+  colback=blue!3,
+  colframe=blue!40!black,
+  enhanced
+]
+The parametrisation~\eqref{eq:helix-exact} satisfies three exact
+invariants, all algebraic consequences of the single identity
+$(4n+3)^2 = 48k(n)+1$:
+\begin{enumerate}[label=(\roman*)]
+  \item \textbf{Arithmetic invariant:} $Q(k(n)) = 4n+3$
+        \quad (Theorem~\ref{thm:fundamental}),
+  \item \textbf{Spiral invariant:} $r = \frac{6}{\pi^2}\,\theta$
+        \quad (Theorem~\ref{thm:spiral}),
+  \item \textbf{Cone invariant:} $z = -\frac{3}{4} + \frac{\pi}{2}\,r$
+        \quad (Theorem~\ref{thm:cone}).
+\end{enumerate}
+\end{tcolorbox}
+
+\subsection{Velocity, Curvature, and Torsion}\label{subsec:curvature}
+
+The speed of the helix in the $\theta$-parametrisation is obtained by
+differentiating~\eqref{eq:helix-theta}. The cross terms cancel via the
+Pythagorean identity, yielding:
+\begin{equation}\label{eq:speed}
+  \|\gamma'(\theta)\|
+  = \frac{3}{\pi^2}\sqrt{4(1+\theta^2) + \pi^2}.
+\end{equation}
+
+\begin{theorem}[Exact 3D curvature and torsion]\label{thm:curvature-torsion}
+With $a = 6/\pi^2$ and $c_1 = 3/\pi$:
+\begin{align}
+  \kappa(\theta)
+  &= \frac{a\,\sqrt{c_1^2(\theta^2+4) + a^2(\theta^2+2)^2}}
+          {\bigl(a^2(1+\theta^2) + c_1^2\bigr)^{3/2}},
+  \label{eq:kappa}\\[6pt]
+  \tau(\theta)
+  &= \frac{c_1\,(\theta^2 + 6)}
+          {c_1^2(\theta^2+4) + a^2(\theta^2+2)^2}.
+  \label{eq:tau}
+\end{align}
+\end{theorem}
+
+\begin{proof}
+Computing the derivatives $\gamma'$, $\gamma''$, $\gamma'''$ of the
+parametrisation~\eqref{eq:helix-theta}, one obtains the cross product
+\[
+  \gamma' \times \gamma''
+  = \bigl(-ac_1(2\cos\theta - \theta\sin\theta),\;
+          -ac_1(2\sin\theta + \theta\cos\theta),\;
+          a^2(\theta^2+2)\bigr)
+\]
+with $|\gamma' \times \gamma''|^2 = a^2[c_1^2(\theta^2+4) +
+a^2(\theta^2+2)^2]$, $|\gamma'|^2 = a^2(1+\theta^2) + c_1^2$, and
+the scalar triple product
+$(\gamma' \times \gamma'') \cdot \gamma''' = a^2 c_1(\theta^2+6)$.
+The formulae follow from $\kappa = |\gamma' \times \gamma''|/|\gamma'|^3$
+and $\tau = (\gamma' \times \gamma'') \cdot \gamma''' / |\gamma' \times
+\gamma''|^2$.
+\end{proof}
+
+\begin{remark}[Asymptotics]
+For $\theta \to \infty$:
+$\kappa(\theta) \sim 1/(a\theta) \to 0$ (the helix straightens) and
+$\tau(\theta) \to c_1/a^2 = \pi^3/12$ (the torsion converges to a
+non-zero constant).
+\end{remark}
+
+\subsection{Angular Spacing Pattern}\label{subsec:angles}
+
+\begin{proposition}[Alternating angular spacings]\label{prop:angles}
+Between consecutive integer points the angular spacings are:
+\begin{align}
+  \Delta\theta^{(4)} &= \theta_{n+4} - \theta_n = \tfrac{4\pi}{3}
+  \quad\text{(long step)},
+  \label{eq:angle-long}\\
+  \Delta\theta^{(2)} &= \theta_{n+2} - \theta_n = \tfrac{2\pi}{3}
+  \quad\text{(short step)}.
+  \label{eq:angle-short}
+\end{align}
+Together, $\Delta\theta^{(4)} + \Delta\theta^{(2)} = 2\pi$,
+so that each long--short pair completes exactly one full revolution.
+\end{proposition}
+
+\begin{proof}
+From $\theta_n = \frac{\pi}{3}n + \frac{\pi}{4}$:
+$\theta_{n+\Delta n} - \theta_n = \frac{\pi}{3}\Delta n$.
+\end{proof}
